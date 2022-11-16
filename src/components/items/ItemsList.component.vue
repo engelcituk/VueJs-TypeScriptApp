@@ -20,6 +20,7 @@ import Loader from '@/components/shared/Loader.component.vue'
 
 export default defineComponent({
     components: { ItemComponent, Loader },
+    emits: ['select-item'], 
     props:{
         items:{
             type: Array as PropType<ItemInterface[]>
@@ -28,10 +29,9 @@ export default defineComponent({
             type: Boolean
         }
     },
-    setup() {
+    setup(props, { emit }) {
         const onItemSelect = (item: ItemInterface) => {
-            item.selected = !item.selected
-            console.log('onItemSelect', item.id, item.selected)
+            emit('select-item', item)
         }
         return {
             onItemSelect
