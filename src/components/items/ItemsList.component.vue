@@ -2,7 +2,7 @@
     <div>
         <h3>Item</h3>
         <ul>
-            <li v-for="item in items" :key="item.id">{{item.name}}</li>
+            <li v-for="item in items" :key="item.id" @click="onItemSelect(item)">{{item.name}}</li>
         </ul>
     </div>
 </template>
@@ -18,7 +18,13 @@ export default defineComponent({
         }
     },
     setup() {
-        
+        const onItemSelect = (item: ItemInterface) => {
+            item.selected = !item.selected
+            console.log('onItemSelect', item.id, item.selected)
+        }
+        return {
+            onItemSelect
+        }
     },
 })
 </script>
