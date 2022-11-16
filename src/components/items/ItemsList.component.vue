@@ -1,13 +1,13 @@
 <template>
     <div>
-        <h3>Item</h3>
-        <ul>
+        <h3>Items - loading: {{ loading }}:</h3>
+        <Loader v-show="loading" />
+        <ul v-show="!loading">
             <ItemComponent v-for="item in items"
                 :key="item.id"
                 :model="item"
                 @select="onItemSelect"
             />
-
         </ul>
     </div>
 </template>
@@ -16,12 +16,16 @@
 import { defineComponent, PropType } from 'vue'
 import { ItemInterface } from '@/models/items/Item.interface'
 import ItemComponent from './children/Item.component.vue'
+import Loader from '@/components/shared/Loader.component.vue'
 
 export default defineComponent({
-    components: { ItemComponent },
+    components: { ItemComponent, Loader },
     props:{
         items:{
             type: Array as PropType<ItemInterface[]>
+        },
+        loading: {
+            type: Boolean
         }
     },
     setup() {
