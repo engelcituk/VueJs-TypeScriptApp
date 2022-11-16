@@ -59,11 +59,11 @@ export default defineComponent({
         
         &.selected {
             .selected-indicator {
-            color: skyblue;
-        }
+                color: skyblue;
+            }
     }
     &:hover {
-            background-color: #eee;
+        background-color: #eee;
     }
 }
 </style>
