@@ -26,13 +26,14 @@ export class HttpClientModel implements HttpClientInterface {
             // opciones de axios
             const options: AxiosRequestConfig = {
                 headers: {
-
+                    
                 }
             }
 
             if (requiresToken) {
                 const token = this.getToken()
                 // options.headers.RequestVerificationToken = token
+                axios.defaults.headers.common['RequestVerificationToken'] = token
             }
         
             axios
@@ -57,6 +58,8 @@ export class HttpClientModel implements HttpClientInterface {
             if (requiresToken) {
                 const token = this.getToken()
                 // options.headers.RequestVerificationToken = token
+                axios.defaults.headers.common['RequestVerificationToken'] = token
+
             }
             axios
             .post(url, payload, options)
